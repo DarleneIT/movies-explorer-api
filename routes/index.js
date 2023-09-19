@@ -7,8 +7,8 @@ const createUser = require('./signup');
 
 const NotFoundError = require('../errors/NotFound');
 
-route.post('/signin', login);
-route.post('/signup', createUser);
+route.use('/signin', login);
+route.use('/signup', createUser);
 
 const auth = require('../middlewares/auth');
 
