@@ -13,15 +13,15 @@ const { SECRET_KEY } = require('../utils/constants');
 // Создать нового пользователя
 module.exports.createUser = (req, res, next) => {
   const {
-    name, about, avatar, email, password,
+    name, email, password,
   } = req.body;
   bcrypt
     .hash(password, 3)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name, email, password: hash,
     }))
     .then((user) => res.status(201).send({
-      name: user.name, about: user.about, avatar: user.avatar, _id: user._id, email: user.email,
+      name: user.name, _id: user._id, email: user.email,
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -64,11 +64,11 @@ module.exports.getUserById = (req, res, next) => {
 // Редактировать данные пользователя
 module.exports.editUser = (req, res, next) => {
   const userId = req.user._id;
-  const { name, about } = req.body;
+  const { name } = req.body;
   User
     .findByIdAndUpdate(
       userId,
-      { name, about },
+      { name },
       { new: true, runValidators: true },
     )
     .orFail()
