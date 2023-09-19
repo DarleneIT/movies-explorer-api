@@ -16,8 +16,6 @@ const corsOptions = {
   origin: [
     'https://movies.nomoredomainsrocks.ru',
     'http://movies.nomoredomainsrocks.ru',
-    'https://api.movies.nomoredomainsrocks.ru',
-    'http://api.movies.nomoredomainsrocks.ru',
     'http://localhost:4000',
     'http://localhost:4001',
   ],
