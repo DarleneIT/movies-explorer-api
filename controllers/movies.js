@@ -6,8 +6,8 @@ const NotFoundError = require('../errors/NotFound');
 const BadRequestError = require('../errors/BadRequest');
 
 // Показать сохраненные пользователем фильмы
-module.exports.getMovies = (_, res, next) => {
-  Movie.find({})
+module.exports.getMovies = (req, res, next) => {
+  Movie.find({ owner: req.user._id })
     .then((cards) => {
       res.status(200).send(cards);
     })
