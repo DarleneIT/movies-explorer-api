@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
@@ -16,8 +17,6 @@ const corsOptions = {
   origin: [
     'https://movies.nomoredomainsrocks.ru',
     'http://movies.nomoredomainsrocks.ru',
-    'http://localhost:4000',
-    'http://localhost:4001',
   ],
   optionsSuccessStatus: 200,
 };
@@ -29,6 +28,7 @@ mongoose.connect(DB_URL);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.json());
 app.use(helmet());
 

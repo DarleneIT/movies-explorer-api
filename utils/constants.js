@@ -8,4 +8,4 @@ if (NODE_ENV === 'production') {
   config();
 }
 
-module.exports = { SECRET_KEY };
+module.exports = { SECRET_KEY, NODE_ENV };

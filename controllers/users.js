@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
@@ -7,8 +8,9 @@ const User = require('../models/user');
 const BadRequestError = require('../errors/BadRequest');
 const NotFoundError = require('../errors/NotFound');
 const ConflictError = require('../errors/Conflict');
+const UnauthorizedError = require('../errors/Unauthorized');
 
-const { SECRET_KEY } = require('../utils/constants');
+const { SECRET_KEY, NODE_ENV } = require('../utils/constants');
 
 // Создать нового пользователя
 module.exports.createUser = (req, res, next) => {
@@ -88,13 +90,17 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
   User.findUserByCredentials(email, password)
-    .then((user) => {
-      const token = jwt.sign({ _id: user._id }, SECRET_KEY, {
-        expiresIn: '7d',
-      });
-      res.send({ token });
+    .then(({ _id: userId }) => {
+      if (userId) {
+        const token = jwt.sign(
+          { userId },
+          NODE_ENV === 'production' ? SECRET_KEY : 'secret',
+          { expiresIn: '7d' },
+        );
+
+        return res.send({ token });
+      }
+      throw new UnauthorizedError('Неправильные почта и/или пароль');
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch(next);
 };
