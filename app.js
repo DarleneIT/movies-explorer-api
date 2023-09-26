@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
+const limiter = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const error = require('./middlewares/error');
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(requestLogger);
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
