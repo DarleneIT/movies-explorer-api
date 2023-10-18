@@ -8,9 +8,8 @@ const User = require('../models/user');
 const BadRequestError = require('../errors/BadRequest');
 const NotFoundError = require('../errors/NotFound');
 const ConflictError = require('../errors/Conflict');
-const UnauthorizedError = require('../errors/Unauthorized');
 
-const { SECRET_KEY, NODE_ENV } = process.env;
+const { SECRET_KEY } = process.env;
 
 // Создать нового пользователя
 module.exports.createUser = (req, res, next) => {
