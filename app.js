@@ -18,8 +18,8 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    'https://movies.nomoredomainsrocks.ru',
-    'http://movies.nomoredomainsrocks.ru',
+    'https://allmovies.nomoredomainsrocks.ru',
+    'http://allmovies.nomoredomainsrocks.ru',
     'http://localhost:3000',
     'http://localhost:3001',
   ],
