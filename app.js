@@ -9,7 +9,6 @@ const cors = require('cors');
 
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 
-const limiter = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const error = require('./middlewares/error');
 
@@ -37,7 +36,6 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(requestLogger);
-app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
