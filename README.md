@@ -6,6 +6,6 @@
 
 IP 158.160.117.6
 
-Frontend http://allmovies.nomoredomainsrocks.ru
+Frontend http://onlymovies.nomoredomainsrocks.ru
 
-Backend https://api.movies.nomoredomainsrocks.ru
+Backend https://api.onlymovies.nomoredomainsrocks.ru

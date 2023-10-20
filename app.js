@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 
 const limiter = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -19,8 +19,8 @@ const corsOptions = {
   origin: [
     'https://onlymovies.nomoredomainsrocks.ru',
     'http://onlymovies.nomoredomainsrocks.ru',
-    'http://localhost:3000',
-    'http://localhost:3001',
+    'http://localhost:4000',
+    'http://localhost:4001',
   ],
   optionsSuccessStatus: 200,
 };
